@@ -1,17 +1,20 @@
-import {Router} from 'express';
-import multer from "../libs/multer";
+import { Router } from 'express'
+import multer from '../libs/multer'
 
-const router = Router();
-import { createPhoto, getPhotos,getPhoto, deletePhoto, updatePhoto } from "../controllers/photo.controller"; 
+const router = Router()
+import {
+  createPhoto,
+  getPhotos,
+  getPhoto,
+  deletePhoto,
+  updatePhoto,
+} from '../controllers/photo.controller'
 
-router.route('/photos')     
-      .post(multer.single('image'),createPhoto)  
-      .get(getPhotos)
+router.post('/photos', multer.single('image'), createPhoto)
+router.get('/photos', getPhotos)
 
-      router.route('/photos/:id')
-      .get(getPhoto)
-       .delete(deletePhoto)
-       .put(updatePhoto);
+router.get('/photos/:id', getPhoto)
+router.delete('/photos/:id', deletePhoto)
+router.put('/photos/:id', updatePhoto)
 
-       
-export default router;
+export default router
